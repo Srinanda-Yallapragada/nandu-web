@@ -1,20 +1,10 @@
 #![allow(non_snake_case)]
-//! Example: G//! This example shows how to use the `Router` component to create a simple navigation system.
-//! The more complex router example uses all of the router features, while this simple exmaple showcases
-//! just the `Layout` and `Route` features.
-//!
-//! Layouts let you wrap chunks of your app with a component. This is useful for things like a footers, headers, etc.
-//! Routes are enum variants with that match the name of a component in scope. This way you can create a new route
-//! in your app simply by adding the variant to the enum and creating a new component with the same name. You can
-//! override this of course.
-
 use dioxus::prelude::*;
-use manganis::*;
 
 fn main() {
     launch(|| {
         rsx! {
-            style { {include_str!("../assets/flat_router.css")} }
+            style { {include_str!("../assets/main.css")} }
             Router::<Route> {}
         }
     })
@@ -23,28 +13,25 @@ fn main() {
 #[derive(Routable, Clone)]
 #[rustfmt::skip]
 enum Route {
-    #[layout(Footer)] // wrap the entire app in a footer
+    #[layout(Header)] // wrap the entire app in a header
         #[route("/")]
         Home {},
 
         #[route("/resume")]
         Resume {},
+        
+        #[route("/toolkit")]
+        Toolkit{},
 
-        #[route("/play")]
-        Play {},
-
-        #[route("/settings")]
-        Settings {},
 }
 
 #[component]
-fn Footer() -> Element {
+fn Header() -> Element {
     rsx! {
         nav {
             Link { to: Route::Home {}, class: "nav-btn", "Home" }
             Link { to: Route::Resume {}, class: "nav-btn", "Resume" }
-            Link { to: Route::Play {}, class: "nav-btn", "Play" }
-            Link { to: Route::Settings {}, class: "nav-btn", "Settings" }
+            Link { to: Route::Toolkit {}, class: "nav-btn", "Toolkit" }
         }
         div { id: "content",
             Outlet::<Route> {}
@@ -74,17 +61,9 @@ fn Resume() -> Element {
 }
 
 #[component]
-fn Play() -> Element {
+fn Toolkit() -> Element {
     rsx!(
-        h1 { "Play" }
-        p { "Always play with your full heart adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." }
-    )
-}
-
-#[component]
-fn Settings() -> Element {
-    rsx!(
-        h1 { "Settings" }
-        p { "Settings are consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." }
+            h1 { "Toolkit"}
+        p {"Here are some of the tools i have worked with in any capacity"}
     )
 }

@@ -8,13 +8,14 @@ name = "nandu-web"
 default_platform = "web"
 
 # `build` & `serve` dist path
-out_dir = "docs"
+# out_dir = "docs"
+out_dir = "dist"
 
 # resource (assets) file folder
 asset_dir = "assets"
 
 [web.app]
-base_path = "nandu-web"
+# base_path = "https://github.com/Srinanda-Yallapragada/nandu-web"
 
 # HTML title tag content
 title = "nandu-web"
@@ -30,7 +31,7 @@ watch_path = ["src", "assets"]
 # include `assets` in web platform
 [web.resource]
 
-# CSS style file
+# CSS style fie
 
 style = []
 
